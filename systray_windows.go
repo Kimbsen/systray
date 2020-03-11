@@ -197,6 +197,7 @@ func updateAction(item *MenuItem, action *walk.Action) {
 	if err != nil {
 		fail("Unable to set menu item enabled", err)
 	}
+	// TODO: add support for sub-menus
 }
 
 func addOrUpdateMenuItem(item *MenuItem) {

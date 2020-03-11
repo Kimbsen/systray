@@ -44,6 +44,12 @@ func onReady() {
 		mEnabled.SetTemplateIcon(icon.Data, icon.Data)
 
 		systray.AddMenuItem("Ignored", "Ignored")
+
+		subMenuTop := systray.AddMenuItem("SubMenu", "SubMenu Test (top)")
+		subMenuMiddle := subMenuTop.AddSubMenuItem("SubMenu - Level 2", "SubMenu Test (middle)")
+		subMenuMiddle.AddSubMenuItem("SubMenu - Level 3", "SubMenu Test (bottom)")
+		subMenuBottom2 := subMenuMiddle.AddSubMenuItem("Panic!", "SubMenu Test (bottom)")
+
 		mUrl := systray.AddMenuItem("Open UI", "my home")
 		mQuit := systray.AddMenuItem("退出", "Quit the whole app")
 
@@ -70,6 +76,8 @@ func onReady() {
 				mEnabled.Disable()
 			case <-mUrl.ClickedCh:
 				systray.ShowAppWindow("https://www.github.com/getlantern/lantern")
+			case <-subMenuBottom2.ClickedCh:
+				panic("panic button pressed")
 			case <-mToggle.ClickedCh:
 				if shown {
 					mQuitOrig.Hide()
